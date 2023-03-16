@@ -44,9 +44,9 @@ public class DeleteContent {
 		int ret = uePage.delete(); // XTORM 엔진 삭제 호출 메소드
 		
 		if (ret != 0) {
-			LogUtil.error(logger, "Error, delete failed, {}", uePage.getLastError());
+			LogUtil.error(logger, "Error, delete failed, {0}", uePage.getLastError());
 		} else {
-			LogUtil.info(logger, "Success, delete normal, {}", uePage.m_elementId);
+			LogUtil.info(logger, "Success, delete normal, {0}", uePage.m_elementId);
 		}
 
 		disconn();

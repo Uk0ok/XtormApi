@@ -30,9 +30,9 @@ public class DownloadContent {
 		int ret = uePage.getContent(Config.getConfig("DOWNLOAD.DOWNPATH") + Config.getConfig("DOWNLOAD.ELEMENTID"));
 		
 		if (ret != 0) {
-			LogUtil.error(logger, "Error, download failed, {}", uePage.getLastError());
+			LogUtil.error(logger, "Error, download failed, {0}", uePage.getLastError());
 		} else {
-			LogUtil.info(logger, "Success, download normal, {}", uePage.m_elementId);
+			LogUtil.info(logger, "Success, download normal, {0}", uePage.m_elementId);
 		}
 		
 		disconn();

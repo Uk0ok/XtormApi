@@ -15,7 +15,7 @@ public class CreateContent {
 
 	// int seq = 0;
 
-	public CreateContent(){
+	public CreateContent() {
 		//asysConnectData초기화
 		conn = new asysConnectData(Config.getConfig("XTORM.HOSTNAME"), Config.getIntConfig("XTORM.PORT") , Config.getConfig("XTORM.DESCRIPTION"), 
 								   Config.getConfig("XTORM.ID"), Config.getConfig("XTORM.PASSWORD"));

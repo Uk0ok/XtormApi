@@ -37,13 +37,14 @@ public class App {
         // process start
         new CreateContent().create();
 
-        // new DeleteContent().delete();
-
         // File downPath = new File(Config.getConfig("DOWNLOAD.DOWNPATH"));
 		// if (!downPath.exists()) {
 		// 	downPath.mkdirs();
 		// }
         // new DownloadContent().download();
+
+        // new DeleteContent().delete();
+
 
         // logging end
         LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
