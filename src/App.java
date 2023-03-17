@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,6 @@ import uk0ok.util.LogUtil;
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
 
-    public static String XTORM_HOSTNAME = null;
     public static void main(String[] args) { 
         // logging
         LogUtil.info(logger, "Start Create Api");
@@ -30,8 +28,6 @@ public class App {
         try {
             Config.setConfig(baseDir + "conf/conf.properties");
 
-            XTORM_HOSTNAME = Config.getConfig("XTORM_HOSTNAME");
-
             Config.setConfig("BASEDIR", baseDir);
             Config.setConfig("TIME", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(time)));
         } catch (IOException e) {
@@ -40,16 +36,30 @@ public class App {
             return;
         }
         // process start
-        new CreateContent().create();
+        CreateContent cc = new CreateContent();
+        try {
+            cc.create();
+        } finally {
+            cc.disconn();
+        }
 
         // File downPath = new File(Config.getConfig("DOWNLOAD.DOWNPATH"));
 		// if (!downPath.exists()) {
 		// 	downPath.mkdirs();
 		// }
-        // new DownloadContent().download();
+        // DownloadContent dc = new DownloadContent();
+        // try {
+        //     dc.download();
+        // } finally {
+        //     dc.disconn();
+        // }
 
-        // new DeleteContent().delete();
-
+        // DeleteContent dec = new DeleteContent();
+        // try {
+        //     dec.delete();
+        // } finally {
+        //     dec.disconn();
+        // }
 
         // logging end
         LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
