@@ -58,7 +58,7 @@ public class Config {
 	 */
 	public static String getConfig(String key) throws NullPointerException {
 		String value = config.get(key);
-		if (value == null) {
+		if (value == null || value == "") {
 			throw new NullPointerException("Configuration [ " + key + " ] is Null");
 		}
 
@@ -72,6 +72,10 @@ public class Config {
 	 * @throws NumberFormatException
 	 */
 	public static int getIntConfig(String key) throws NumberFormatException {
+		String value = config.get(key);
+		if (value == null || value == "") {
+			throw new NullPointerException("Configuration [ " + key + " ] is Null");
+		}
 		return Integer.parseInt(config.get(key));
 	}
 

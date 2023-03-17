@@ -14,8 +14,6 @@ public class DeleteContent {
 
 	// xtorm Connection 선언 및 초기화
 	public asysConnectData conn = null;
-
-	int seq = 0;
 	
 	public DeleteContent() {
 		conn = new asysConnectData(Config.getConfig("XTORM.HOSTNAME"), Config.getIntConfig("XTORM.PORT") , Config.getConfig("XTORM.DESCRIPTION"), 
@@ -32,8 +30,6 @@ public class DeleteContent {
 		} else {
 			LogUtil.info(logger, "Success, delete normal, {0}", uePage.m_elementId);
 		}
-
-		disconn();
     }
 	
 	// Connection 종료

@@ -15,8 +15,6 @@ public class DownloadContent {
 	// xtorm Connection 선언 및 초기화
 	public asysConnectData conn = null;
 
-	int seq = 0;
-	
 	public DownloadContent () {
 		//asysConnectData초기화
 		conn = new asysConnectData(Config.getConfig("XTORM.HOSTNAME"), Config.getIntConfig("XTORM.PORT") , Config.getConfig("XTORM.DESCRIPTION"), 
@@ -34,16 +32,13 @@ public class DownloadContent {
 		} else {
 			LogUtil.info(logger, "Success, download normal, {0}", uePage.m_elementId);
 		}
-		
-		disconn();
     }
 
 	// Connection 종료
-	private void disconn() {
+	public void disconn() {
 		if (conn != null) {
 			conn.close();
 			conn = null;
 		}
 	}
 }
-

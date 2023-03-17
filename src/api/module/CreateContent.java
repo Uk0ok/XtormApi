@@ -1,4 +1,5 @@
 package api.module;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,8 +13,6 @@ public class CreateContent {
 	private static Logger logger = LoggerFactory.getLogger(CreateContent.class);
 	// xtorm Connection 선언 및 초기화
 	public asysConnectData conn = null;
-
-	// int seq = 0;
 
 	public CreateContent() {
 		//asysConnectData초기화
@@ -39,7 +38,6 @@ public class CreateContent {
 				LogUtil.info(logger, "Success, create normal, {0}", uePage.m_elementId);
 			}
 		}
-
     }
 	
 	// Connection 종료
