@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,8 @@ import uk0ok.util.LogUtil;
 
 public class App {
     private static Logger logger = LoggerFactory.getLogger(App.class);
+
+    public static String XTORM_HOSTNAME = null;
     public static void main(String[] args) { 
         // logging
         LogUtil.info(logger, "Start Create Api");
@@ -26,6 +29,8 @@ public class App {
         // setting configuration
         try {
             Config.setConfig(baseDir + "conf/conf.properties");
+
+            XTORM_HOSTNAME = Config.getConfig("XTORM_HOSTNAME");
 
             Config.setConfig("BASEDIR", baseDir);
             Config.setConfig("TIME", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(time)));

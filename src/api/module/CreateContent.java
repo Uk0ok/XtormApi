@@ -40,11 +40,10 @@ public class CreateContent {
 			}
 		}
 
-		disconn();
     }
 	
 	// Connection 종료
-	private void disconn() {
+	public void disconn() {
 		if (conn != null) {
 			conn.close();
 			conn = null;

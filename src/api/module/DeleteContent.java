@@ -21,22 +21,6 @@ public class DeleteContent {
 		conn = new asysConnectData(Config.getConfig("XTORM.HOSTNAME"), Config.getIntConfig("XTORM.PORT") , Config.getConfig("XTORM.DESCRIPTION"), 
 								   Config.getConfig("XTORM.ID"), Config.getConfig("XTORM.PASSWORD"));
 	}
-
-	// public DeleteContent(int seq) {
-	// 	this.seq = seq;
-	// }
-
-	// public void run() {
-	// 	logger.info(this.seq + "thread start.");
-
-	// 	try {
-	// 		// 1초 대기
-	// 		Thread.sleep(1000);
-	// 	} catch (InterruptedException e) {
-	// 		logger.error("ERROR, {}", e.getMessage());
-	// 	}
-	// 	logger.info(this.seq + "thread end.");
-	// }
 	
 	public void delete(){
 		asysUsrElement uePage = new asysUsrElement(conn);
@@ -53,7 +37,7 @@ public class DeleteContent {
     }
 	
 	// Connection 종료
-	private void disconn() {
+	public void disconn() {
 		if (conn != null) {
 			conn.close();
 			conn = null;
