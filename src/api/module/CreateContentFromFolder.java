@@ -1,14 +1,14 @@
 package api.module;
 
 import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
@@ -79,6 +79,7 @@ public class CreateContentFromFolder {
 	public void writeToSamFile(List<String> fileList) {
 		Path filePath = Paths.get(Config.getConfig("DOWNLOAD.DOWNLOADLIST"));
 
+		// file이 존재하지 않으면 createFile
 		if (Files.notExists(filePath)) {
 			try {
 				Files.createFile(filePath);
@@ -87,6 +88,11 @@ public class CreateContentFromFolder {
 			}
 		}
 
+		/*
+		 * stream을 사용하여 fileList의 값을 \n 개행 후
+		 * getBytes -> String을 byte로 변경 
+		 * StandardOpenOption.APPEND 를 사용하여 append
+		 */
 		fileList.stream().forEach(t -> {
 			try {
 				Files.write(filePath, (t + "\n").getBytes(), StandardOpenOption.APPEND); 
@@ -94,6 +100,26 @@ public class CreateContentFromFolder {
 				e.printStackTrace();
 			}
 		});
+
+		/*
+		 * stream의 filter의 endsWith로 리스트 내 37.txt로 끝나는 값들로 이루어진 List로 데이터 
+		 */
+		// List<String> filterList = fileList.stream().filter(t -> t.endsWith("37.txt")).collect(Collectors.toList());
+		// System.out.println(filterList);
+
+
+		/*
+		 * StandardOpenOption.CREATE 사용
+		 * collect(Collectors.joinning("\n"))은 List에 있는 값들을 \n 개행을 포함한 하나의 String으로 묶는 것
+		 * 
+		 * 이걸 쓰면 대용량 처리일 때 비효율적임
+		 */
+		// String fileContent = fileList.stream().collect(Collectors.joining("\n"));
+		// try {
+		// 	Files.write(filePath, fileContent.getBytes(), StandardOpenOption.CREATE);
+		// } catch (IOException e) {
+		// 	e.printStackTrace();
+		// }
 	}
 	
 	// Connection 종료
