@@ -1,0 +1,6 @@
+nio
+
+string filename = new date를 String 화 해서 파일을 새로 만들고
+
+getShortID와 Files.write를 사용하여 create할때 파일에 쓰고
+그 파일을 불러와서 downlaod & delete

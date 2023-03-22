@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import api.module.CreateContent;
+import api.module.CreateIndexContent;
 import api.module.DeleteContent;
 import api.module.DownloadContent;
 import uk0ok.util.CommonUtil;
@@ -36,12 +37,12 @@ public class App {
             return;
         }
         // process start
-        CreateContent cc = new CreateContent();
-        try {
-            cc.create();
-        } finally {
-            cc.disconn();
-        }
+        // CreateContent cc = new CreateContent();
+        // try {
+        //     cc.create();
+        // } finally {
+        //     cc.disconn();
+        // }
 
         // File downPath = new File(Config.getConfig("DOWNLOAD.DOWNPATH"));
 		// if (!downPath.exists()) {
@@ -60,6 +61,13 @@ public class App {
         // } finally {
         //     dec.disconn();
         // }
+
+        CreateIndexContent cic = new CreateIndexContent();
+        try {
+            cic.create();
+        } finally {
+            cic.disconn();
+        }
 
         // logging end
         LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
