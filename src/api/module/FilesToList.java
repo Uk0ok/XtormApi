@@ -7,49 +7,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.windfire.apis.asysConnectData;
-import com.windfire.apis.asys.asysUsrElement;
-
+import uk0ok.util.CommonUtil;
 import uk0ok.util.Config;
 import uk0ok.util.LogUtil;
 
-public class CreateContentFromFolder {
+public class FilesToList {
 	private static Logger logger = LoggerFactory.getLogger(CreateContent.class);
-	// xtorm Connection 선언 및 초기화
-	// public asysConnectData conn = null;
-
-	// public CreateContentFromFolder() {
-	// 	//asysConnectData초기화
-	// 	conn = new asysConnectData(Config.getConfig("XTORM.HOSTNAME"), Config.getIntConfig("XTORM.PORT") , Config.getConfig("XTORM.DESCRIPTION"), 
-	// 							   Config.getConfig("XTORM.ID"), Config.getConfig("XTORM.PASSWORD"));
-	// }
-
-	// public void create() {
-	// 	for (int j=0; j<Config.getIntConfig("CREATE.COUNT"); j++) {
-	// 		asysUsrElement uePage = new asysUsrElement(conn);
-
-	// 		uePage.m_localFile = Config.getConfig("USER.LOCALFILE");
-	// 		uePage.m_descr = Config.getConfig("USER.DESCRIPTION");
-	// 		uePage.m_cClassId = Config.getConfig("USER.CCLASSID");
-	// 		uePage.m_userSClass = Config.getConfig("USER.USERSCLASS");
-	// 		uePage.m_eClassId = Config.getConfig("USER.ECLASSID");
-
-	// 		int ret = uePage.create(Config.getConfig("USER.GATEWAY"));
-			
-	// 		if (ret != 0) {
-	// 			LogUtil.error(logger, "Error, create failed, {0}", uePage.getLastError());
-	// 		} else {
-	// 			LogUtil.info(logger, "Success, create normal, {0}", uePage.m_elementId);
-	// 		}
-	// 	}
-    // }
 
 	// 경로안에 있는 파일이름을 List에 넣기
 	public List<String> getFileNameList() {
@@ -121,16 +89,13 @@ public class CreateContentFromFolder {
 		// 	e.printStackTrace();
 		// }
 	}
-	
-	// Connection 종료
-	// public void disconn() {
-	// 	if (conn != null) {
-	// 		conn.close();
-	// 		conn = null;
-	// 	}
-	// }
 
 	public static void main(String[] args) {
+		// logging
+        LogUtil.info(logger, "Start Create Api");
+        // start time
+        long time = System.currentTimeMillis();
+        // Base directory of project
 		String baseDir = "./";
 		// setting configuration
         try {
@@ -143,8 +108,12 @@ public class CreateContentFromFolder {
             return;
         }
 
-		CreateContentFromFolder ccff = new CreateContentFromFolder();
+		FilesToList ccff = new FilesToList();
 		List<String> fileList = ccff.getFileNameList();
 		ccff.writeToSamFile(fileList);
+		// ccff.readFile();
+
+		 // logging end
+		 LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
 	}
 }
