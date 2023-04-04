@@ -16,7 +16,7 @@ import uk0ok.util.CommonUtil;
 import uk0ok.util.Config;
 import uk0ok.util.LogUtil;
 
-public class createFile {
+public class CreateTestFile {
 	private static Logger logger = LoggerFactory.getLogger(CreateContent.class);
 	public static void main(String[] args) throws InterruptedException {
 		// logging
@@ -36,34 +36,39 @@ public class createFile {
             return;
         }
 		
-		new createFile().createFiles();
+		new CreateTestFile().createFiles();
 
 		// logging end
 		LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
 	}
 
-	public void createFiles() throws InterruptedException {
-		System.out.println();
-		for (int i=0; i < 100; i++) {
+	public void createFiles() {
+		for (int i=0; i < Config.getIntConfig("CREATE.COUNT"); i++) {
 			String filename = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			filename += String.valueOf(i);
 			String folderPath = Config.getConfig("USER.FOLDERPATH");
 			// Path dir = Paths.get(folderPath);
 			Path createFileName = Paths.get(folderPath + "/" + filename + ".txt");
-			
+
 			if(Files.notExists(createFileName)) {
 				try {
-					Files.createFile(createFileName);
-					LogUtil.info(logger, "File Created");
-					try {
-						Files.write(createFileName, ("create file" + filename + "\n").getBytes(), StandardOpenOption.APPEND);
+					Files.write(createFileName, ("create file" + filename + "\n").getBytes(), StandardOpenOption.CREATE);
+					LogUtil.info(logger, "File Created, {}", createFileName);
 					} catch (IOException e) {
-						LogUtil.error(logger, "Error, Failed to write File {}", e.getMessage());
+						LogUtil.error(logger, "Error, Failed to create or write File {}", e.getMessage());
+						return;
 					}
-				} catch (IOException e) {
-					LogUtil.error(logger, "Error, Failed to create file {}", e.getMessage());
-				}
 			}
-			TimeUnit.SECONDS.sleep(1);
+			/*
+			try {
+				// 이걸로 filename을 변경하는 건 충돌 가능성이 있다.
+				// TimeUnit.SECONDS.sleep(1); 
+				
+			} catch (InterruptedException e) {
+				// Exception 터져서 꺼지는걸 방지 하기 위함의 try catch 문이고
+				// 코드에 큰 영향을 주지않아서 별다른 처리 X
+			}
+			 */
 		}
 	}
 }

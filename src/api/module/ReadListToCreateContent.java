@@ -61,7 +61,7 @@ public class ReadListToCreateContent {
 	public List<String> readFile() {
 		List<String> lines = null;
 		try {
-			lines = Files.readAllLines(Paths.get(Config.getConfig("DOWNLOAD.DOWNLOADLIST")));
+			lines = Files.readAllLines(Paths.get(Config.getConfig("CREATE.CREATELIST")));
 
 		} catch (NullPointerException e) {
 			LogUtil.error(logger, "Error, NullPointException! check your files -> {}", e.getMessage());

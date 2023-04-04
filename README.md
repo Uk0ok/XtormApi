@@ -1,18 +1,17 @@
-## Getting Started
+## CreateContent.java
+- 하나의 파일을 여러번 등록하거나 테스트 용도의 CREATE API
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## CreateTestFile.java
+- ReadListToCreateContent.java의 파일 대상건을 만들기 위한 코드
 
-## Folder Structure
+## FilesToList.java
+- 경로를 지정한 Folder내 파일들의 경로를 리스트로 저장하는 코드
 
-The workspace contains two folders by default, where:
+## ReadListToCreateContent.java
+- 리스트 내 파일경로들을 읽어와 CREATE API
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## DownloadFromFile.java
+- DownloadList가 있는 파일에 원하는 elementid들을 읽어와 다운로드
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## DeleteFromFile.java
+- DeleteList가 있는 파일에 원하는 elementid들을 읽어와 삭제

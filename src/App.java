@@ -37,12 +37,12 @@ public class App {
             return;
         }
         // process start
-        // CreateContent cc = new CreateContent();
-        // try {
-        //     cc.create();
-        // } finally {
-        //     cc.disconn();
-        // }
+        CreateContent cc = new CreateContent();
+        try {
+            cc.create();
+        } finally {
+            cc.disconn();
+        }
 
         // File downPath = new File(Config.getConfig("DOWNLOAD.DOWNPATH"));
 		// if (!downPath.exists()) {
@@ -62,12 +62,12 @@ public class App {
         //     dec.disconn();
         // }
 
-        CreateIndexContent cic = new CreateIndexContent();
-        try {
-            cic.create();
-        } finally {
-            cic.disconn();
-        }
+        // CreateIndexContent cic = new CreateIndexContent();
+        // try {
+        //     cic.create();
+        // } finally {
+        //     cic.disconn();
+        // }
 
         // logging end
         LogUtil.info(logger, "End Create Api. ( {0}s )", CommonUtil.getTimeElapsed(time));
